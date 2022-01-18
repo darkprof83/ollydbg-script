@@ -1,15 +1,15 @@
 /*
 Script written by VolX
 Script   : Aspr2.XX_unpacker
-版本     : v1.13SC
-日期     : 18-Feb-2008
-调试环境 : OllyDbg 1.1, ODBGScript 1.52, WINXP, WIN2000
-调试选项 : 设置 OllyDbg 忽略所有异常选项 
-工具 : OllyDbg, ODBGScript 1.47, Import Reconstructor.
-感谢 : Oleh Yuschuk - author of OllyDbg
+Version  : v1.13SC
+Date     : 18-Feb-2008
+Debugger : OllyDbg 1.1, ODBGScript 1.52, WINXP, WIN2000
+options  : set OllyDbg ignore all exceptions option 
+tool     : OllyDbg, ODBGScript 1.47, Import Reconstructor.
+grateful : Oleh Yuschuk - author of OllyDbg
        SHaG - author of OllyScript
        Epsylon3 - author of ODbgScript
-特别感谢 : fly, linex, machenglin 等兄弟的帮忙测试.
+Special thanks to : fly, linex, machenglin and other brothers for their help in testing. 
 */
 //support Asprotect 1.32, 1.33, ,1.35, 1.4, 2.0, 2.1, 2.11, 2.2beta, 2.2, 2.3, 2.4
 
@@ -976,7 +976,7 @@ cmp tmp2, 0
 je lab25_1
 cmp tmp2, 1
 je lab25_2
-msg "未知的 55 数据结构"
+msg "Unknown 55 data structure"
 pause
 
 //old
@@ -1035,12 +1035,12 @@ cmp count, 6
 je sixfunc
 cmp count, 7
 je sevenfunc
-msg "找不到对等的标准函数的数额"
+msg "Amount of equivalent standard function not found"
 pause
 jmp lab27
 
 onefunc:
-log "1 个标准函数"
+log "1 standard function"
 mov tmp1, thunkdataloc
 mov tmp2, [tmp1]
 mov [tmp2], #6AFF5064A100000000508B44240C64892500000000896C240C8D6C240C50C3#
@@ -1060,7 +1060,7 @@ cmp tmp4, A6F3D189
 jne lab27
 
 twofunc_1:
-log "2 个标准函数"
+log "2 standard functions"
 mov [tmp2], #56575389C689D709C074038B40FC09D274038B52FC89C139D1760289D139C9F3A6742A8A5EFF80FB61720880FB7A7703#
 add tmp2, 30
 mov [tmp2], #80EB208A7FFF80FF61720880FF7A770380EF2038FB74D80FB6C30FB6D729D05B5F5EC3#
@@ -1070,8 +1070,8 @@ mov [tmp2], #575689D789C6B9FFFFFFFF31C0F2AEF7D189D731D2F3A68A46FF8A57FF29D05E5FC
 jmp lab27
 
 fivefunc:
-log "5 个标准函数"
-msg "5 个标准函数"
+log "5 standard functions"
+msg "5 standard functions"
 pause
 jmp lab27
 
@@ -1087,7 +1087,7 @@ je error
 //log tmp4
 cmp tmp4, tmp2
 ja error
-log "6 个标准函数"
+log "6 standard functions"
 mov [tmp2], #56575389C689D709C074038B40FC09D274038B52FC89C139D1760289D139C9F3A6742A8A5EFF80FB61720880FB7A7703#
 add tmp2, 30
 mov [tmp2], #80EB208A7FFF80FF61720880FF7A770380EF2038FB74D80FB6C30FB6D729D05B5F5EC3#
@@ -1116,7 +1116,7 @@ sub tmp3, B
 mov tmp4, [tmp3]
 cmp tmp4, A6F3D189
 jne lab27
-log "7 个标准函数"
+log "7 standard functions"
 mov [tmp2], #56575389C689D709C074038B40FC09D274038B52FC89C139D1760289D139C9F3A6742A8A5EFF80FB61720880FB7A7703#
 add tmp2, 30
 mov [tmp2], #80EB208A7FFF80FF61720880FF7A770380EF2038FB74D80FB6C30FB6D729D05B5F5EC3#
@@ -1256,7 +1256,7 @@ mov tmp2, [tmp1+4], 1
 cmp tmp2, 08
 jne lab29_1
 mov sdksccount, [ebp-0c]
-log sdksccount, "SDK 偷代码区段总数 = "
+log sdksccount, "Total SDK Stealing Code Sections = "
 mov tmp1, [esp]
 GMEMI tmp1, MEMORYBASE
 mov tmp10, $RESULT
@@ -1266,7 +1266,7 @@ lab29_1:
 cmp tmp2, 0c
 jne error
 mov sdksccount, [ebp-10]
-log sdksccount, "SDK 偷代码区段 = "
+log sdksccount, "SDK stealing code section = "
 mov tmp1, [esp+4]
 GMEMI tmp1, MEMORYBASE
 mov tmp10, $RESULT
@@ -1528,7 +1528,7 @@ add tmp1, 500
 dm tmp1, jmptablesize, "jmptable.bin"
 cmp sdksccount, tmp7        //tmp7=number of section with scstk
 je lab31_1
-log tmp7, "带 scstk 的 SDK 区段 = "
+log tmp7, "SDK section with scstk = "
 mov tmp1, dllimgbase        //Location of full set address
 mov tmp2, tmp1
 add tmp2, 300               //Location of section with scstk
@@ -1556,7 +1556,7 @@ mov tmp6, [tmp1]
 mov tmp5, [tmp6+1]
 add tmp5, tmp6
 add tmp5, 5
-log tmp5, "SDK 偷代码区段地址 = "
+log tmp5, "SDK stealing code section address = "
 mov [tmp9], tmp6             //store SDK section without scstk
 add tmp9, 4
 mov [tmp9], tmp5
@@ -1587,7 +1587,7 @@ sti
 sti
 mov countaddr, [eax]
 add countaddr, imgbase
-log countaddr, "Delphi 初始化表的地址 "
+log countaddr, "Address of Delphi initialization table "
 find dllimgbase, #55FFD784C07504#
 mov tmp1, $RESULT
 cmp tmp1, 0
@@ -2452,7 +2452,7 @@ je lab36_3
 esto
 
 lab36_3:
-//msg "Delphi 初始化表修复完毕"
+//msg "Delphi initialization table repair completed"
 bc tmp1
 
 //Restore original code
@@ -2595,7 +2595,7 @@ jmp error
 lab45:
 bc tmp5
 bc tmp6
-//msg "type3 API 修复完毕"
+//msg "type3 API has been fixed"
 //pause
 mov type3count, [tmp3]
 //log type3count
@@ -2671,7 +2671,7 @@ jb findemuaddr_4
 jmp findemuaddr_5
 
 findemuaddr_4:
-msg "这个地址不适用"
+msg "This address does not apply"
 jmp findemuaddr_3
 
 findemuaddr_5:
@@ -2704,14 +2704,14 @@ add tmp1, 4
 jmp loop7
 
 lab47:
-log tmp5, "这版的 Asprotect 其 SDk API 总数 = "
+log tmp5, "Total number of SDk APIs for this version of Asprotect = "
 cmp tmp5, 0B
 je loop8
 cmp tmp5, 0C
 je loop9
 cmp tmp5, 0D
 je loop10
-msg "未知的 Asprotect SDK API"
+msg "Unknown Asprotect SDK API"
 jmp error
 
 //Asprotect 2.3 build01.14
@@ -2766,7 +2766,7 @@ cmp tmp8, 9
 je B_GMI
 cmp tmp8, 0A
 je B_GHI
-msg "这个 API 没有模拟"
+msg "This API is not mocked "
 pause
 scmp caller, "lab82"
 je loop8_4
@@ -3132,7 +3132,7 @@ cmp tmp8, 0A
 je C_GMI
 cmp tmp8, 0B
 je C_GHI
-msg "这个 API 没有模拟"
+msg "This API is not mocked"
 pause
 scmp caller, "lab82"
 je loop9_4
@@ -3502,7 +3502,7 @@ cmp tmp8, 0B
 je D_GHI
 cmp tmp8, 0C
 je D_GHIE
-msg "这个 API 没有模拟"
+msg "This API is not mocked"
 pause
 scmp caller, "lab82"
 je loop10_4
@@ -4145,7 +4145,7 @@ mov caller1, "lab48_3"
 jmp chkrelocsize
 
 lab48_4:
-msg "修复重定位表出错"
+msg "fix relocation table error"
 pause
 jmp error
 
@@ -4361,7 +4361,7 @@ cmp tmp8, 2
 jne error
 //Add "mov eax, 1 "
 mov tmp1, [tmp2]
-log tmp1, "CRC 校验在 "
+log tmp1, "CRC check in "
 add tmp1, 2
 mov [tmp1], #B801000000#
 add tmp1, 5
@@ -4374,7 +4374,7 @@ jmp loop11
 
 loop11_3:
 mov tmp1, [tmp2]
-log tmp1, "CRC 校验在 "
+log tmp1, "CRC check in "
 add tmp1, 2
 mov tmp3, tmp4
 add tmp3, 1
@@ -4408,7 +4408,7 @@ add tmp4, 5
 cmp tmp4, tmp2
 jne loop11_8
 mov [tmp3], #90E9#
-log tmp3, "CRC 校验在 "
+log tmp3, "CRC check in "
 jmp loop11_8
 
 loop11_6:
@@ -4432,7 +4432,7 @@ loop11_7:
 mov tmp4, [tmp2-2], 2
 cmp tmp4, 0
 jne loop11_8
-log tmp3, "CRC 校验在 "
+log tmp3, "CRC check in "
 add tmp3, 2
 mov [tmp3], 0
 
@@ -4738,7 +4738,7 @@ add tmp1, 0E00
 mov tmp2, [tmp1]
 mov E8count, tmp2
 //log E8count
-//msg "修复 type 1 API 完毕"
+//msg "Fixed type 1 API completed"
 //pause
 jmp lab69
 
@@ -4761,7 +4761,7 @@ sub tmp2, tmp3
 shr tmp2, 2
 mov SCafterAPIcount, tmp2
 //log SCafterAPIcount
-//msg "有高级 IAT 保护, 按确定键进行修复"
+//msg "Has advanced IAT protection, press OK to fix"
 //pause
 fill dllimgbase, 0E10, 00
 
@@ -4981,13 +4981,13 @@ bc tmp1
 bc tmp2
 bc tmp3
 bc tmp4
-//msg "修复高级 IAT 保护完毕"
+//msg "Repair advanced IAT protection completed"
 //pause
 mov eip, tmp9            //restore eip
 jmp lab76
 
 lab73:
-msg "修复高级 IAT 保护出错"
+msg "Fix advanced IAT protection error"
 pause
 jmp end
 
@@ -5014,7 +5014,7 @@ add tmp1, E8count
 mov tmp2, [EBXaddr+18]
 cmp tmp1, tmp2
 je lab78
-msg "注意, 有些 API 没修复!"
+msg "Note, some APIs are not fixed!"
 pause
 
 lab78:
@@ -5078,7 +5078,7 @@ cmp tmp2, 6
 je lab79_1
 cmp tmp2, 7
 je lab79_2
-msg "未知的 Asprotect API 寄存器"
+msg "Unknown Asprotect API register"
 jmp error
 
 lab79_1:
@@ -5102,7 +5102,7 @@ cmp tmp1, 0E
 je lab79_8
 cmp tmp1, 0F
 je lab79_8
-msg "未知的 Asprotect SDK API 结构"
+msg "Unknown Asprotect SDK API structure"
 pause
 jmp error
 
@@ -5844,7 +5844,7 @@ mov eip, tmp7
 mov tmp1, dllimgbase
 add tmp1, CAC
 mov patchendaddr, [tmp1]
-//msg "OEP 偷代码分析完毕!"
+//msg "OEP stealing code analysis completed!"
 //pause
 fill dllimgbase, 0d00, 00      //cleaning location storing call xxxxxxxx address
 mov curzeroVA, eip
@@ -5891,7 +5891,7 @@ mov [tmp1], tmp4          //address point to next stolen code section
 mov sdkscaddr, [scstk+18]
 cmp sdkscaddr, 0
 je lab131
-log sdkscaddr, "SDK 偷窃代码区段地址 = "
+log sdkscaddr, "SDK Steal Code Section Address = "
 find sdkscaddr, #0000000000000000#
 mov findendaddr, $RESULT
 add findendaddr, 8
@@ -5909,7 +5909,7 @@ cmp tmp1, tmp2
 jne lab124
 GMEMI findendaddr, MEMORYSIZE
 mov tmp1, $RESULT
-//log tmp1, "区段大小 = "
+//log tmp1, "segment size = "
 mov tmp3, tmp1
 
 //Assume every 1000 bytes will need C0 bytes of free space
@@ -5992,7 +5992,7 @@ lab129:
 bc tmp4
 bc tmp5
 mov eip, tmp7        //restore eip
-//msg "SDk 区段偷代码分析完毕!"
+//msg "SDk section stealing code analysis completed!"
 //pause
 mov patchendaddr, [dllimgbase+0CAC]
 
@@ -6113,9 +6113,9 @@ eval "All_{virtualsec}.bin"
 DM newphysec, newphysecsize, $RESULT
 
 lab142:
-log iatstartaddr, "IAT 的地址 = "
-log iatstart_rva, "IAT 的相对地址 = "
-log iatsize, "IAT 的大小 = "
+log iatstartaddr, "Address of IAT = "
+log iatstart_rva, "IAT-relative address = "
+log iatsize, "Size of IAT = "
 mov tmp3, OEP_rva
 add tmp3, imgbase
 GPI PROCESSNAME
@@ -6205,12 +6205,12 @@ add tmp1, 4C             //signVA+A0 -- RVA of Relocation Table
 mov [tmp1], reloc_rva
 add tmp1, 4              //signVA+A4 -- Size of Relocation Table
 mov [tmp1], reloc_size
-log reloc_rva, "重定位区段相对地址 = "
-log reloc_size, "重定位区段大小 = "
+log reloc_rva, "Relocation section relative address = "
+log reloc_size, "Relocation section size = "
 eval "de_{tmp6}.dll"
 mov tmp5, $RESULT
-log tmp3, "OEP 地址 = "
-log OEP_rva, "OEP 相对地址 = "
+log tmp3, "OEP address = "
+log OEP_rva, "OEP relative address = "
 mov tmp1, lastsecbase
 add tmp1, lastsecsize
 sub tmp1, imgbase
@@ -6231,8 +6231,8 @@ add tmp1, 4              //signVA+A4 -- Size of Relocation Table
 mov [tmp1], 0
 eval "de_{tmp6}.exe"
 mov tmp5, $RESULT
-log tmp3, "OEP 的地址 = "
-log OEP_rva, "OEP 的相对地址 = "
+log tmp3, "Address of OEP = "
+log OEP_rva, "Relative address of OEP = "
 mov tmp1, lastsecbase
 add tmp1, lastsecsize
 sub tmp1, imgbase
@@ -6252,17 +6252,17 @@ mov tmp1, lastsecbase
 add tmp1, lastsecsize
 cmp tmp1, virtualsec
 jne lab145_1
-msg "有偷窃代码, 请查看记录窗口内的 IAT 数据"
+msg "There is theft code, please check the IAT data in the log window"
 pause
 jmp end
 
 lab145_1:
-msg "有偷窃代码, 先补区段后再修复 IAT"
+msg "There is stealing code, first patch the section and then fix the IAT"
 pause
 jmp end
 
 lab146:
-msg "没有偷窃代码, 请查看记录窗口内的 IAT 数据"
+msg "No stealing code, check the IAT data in the log window"
 pause
 jmp end
 
@@ -6526,7 +6526,7 @@ scmp caller1, "lab139"
 je lab140
 
 error:
-msg "错误!"
+msg "Mistake!"
 pause
 jmp end
 
@@ -6535,7 +6535,7 @@ find dllimgbase, #0038310D0A#
 mov tmp1, $RESULT
 cmp tmp1, 0
 je wrongver_1
-msg "本脚本不支持这版的 Asprotect, 可能是 Aspr 1.31 或 v2.0 alpha 所加壳."
+msg "This script does not support this version of Asprotect, it may be packaged by Aspr 1.31 or v2.0 alpha."
 pause
 jmp end
 
@@ -6544,22 +6544,22 @@ find dllimgbase, #0031350D0A#
 mov tmp1, $RESULT
 cmp tmp1, 0
 je wrongver_2
-msg "本脚本不支持这版的 Asprotect, 可能是 Aspr 1.2x 所加壳."
+msg "This script does not support this version of Asprotect, it may be packaged by Aspr 1.2x."
 pause
 jmp end
 
 wrongver_2:
-msg "本脚本不支持这版的 Asprotect."
+msg "This script does not support this version of Asprotect."
 pause
 jmp end
 
 error45:
-msg "错误 45!"
+msg "Error 45!"
 pause
 jmp end
 
 odbgver:
-msg "本脚本须配合 ODbgscript 1.47 或以上的版本"
+msg "This script must be used with ODbgscript 1.47 or above"
 jmp end
 
 notfound:
@@ -6567,7 +6567,7 @@ msg "Not found"
 pause
 
 patcherr:
-msg "分析偷窃代码时出现错误"
+msg "Error parsing stolen code"
 pause
 
 end:
